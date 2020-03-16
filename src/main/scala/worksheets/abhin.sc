@@ -1,3 +1,7 @@
+import java.util.{Properties, Arrays}
+import org.apache.kafka.clients.consumer.KafkaConsumer
+import scala.jdk.CollectionConverters._
+
 object Consumer extends App{
   //  def main(args: Array[String]): Unit = {
   //    consumeFromKafka("quick-start")
@@ -10,7 +14,7 @@ object Consumer extends App{
   props.put("auto.offset.reset", "latest")
   props.put("group.id", "consumer-group")
   val consumer: KafkaConsumer[String, String] = new KafkaConsumer[String, String](props)
-  consumer.subscribe(util.Arrays.asList("quick-start"))
+  consumer.subscribe(Arrays.asList("quick-start"))
   try {
     while (true) {
       val record = consumer.poll(1000).asScala
